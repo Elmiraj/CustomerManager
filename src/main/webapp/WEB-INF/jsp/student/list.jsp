@@ -574,14 +574,14 @@
                                                     <td colspan="13">
                                                         <div class="table-detail">
                                                             <div class="row">
-                                                                <div class="col-xs-12 col-sm-2">
-                                                                    <div class="text-center">
-                                                                        <img height="150"
-                                                                             class="thumbnail inline no-margin-bottom"
-                                                                             alt="${studentListVo.studentVoList.get(index).name}s Avatar"
-                                                                             src="${studentListVo.studentVoList.get(index).picture}">
-                                                                    </div>
-                                                                </div>
+                                                                <%--<div class="col-xs-12 col-sm-2">--%>
+                                                                    <%--<div class="text-center">--%>
+                                                                        <%--<img height="150"--%>
+                                                                             <%--class="thumbnail inline no-margin-bottom"--%>
+                                                                             <%--alt="${studentListVo.studentVoList.get(index).name}s Avatar"--%>
+                                                                             <%--src="${studentListVo.studentVoList.get(index).picture}">--%>
+                                                                    <%--</div>--%>
+                                                                <%--</div>--%>
 
                                                                 <div class="col-xs-12 col-sm-10">
                                                                     <div class="space visible-xs"></div>

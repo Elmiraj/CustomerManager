@@ -33,7 +33,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public List<SubjectVo> findSubjectList() {
-        List<Subject> subjectList = subjectRepository.findAll();
+        List<Subject> subjectList = subjectRepository.findAllByOrderByName();
         return SubjectConverter.toVoList(subjectList);
     }
 

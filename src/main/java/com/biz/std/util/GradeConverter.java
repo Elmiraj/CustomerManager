@@ -10,7 +10,9 @@ import java.util.List;
 
 /**
  * 班级的VO/PO转换类
- * Created by haojia.wang on 2017/5/26.
+ * GradeConverter class
+ * @author junzhang
+ * @date 2018-12-20
  */
 public class GradeConverter {
 
