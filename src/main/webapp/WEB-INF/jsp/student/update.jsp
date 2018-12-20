@@ -406,16 +406,16 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="avatar">头像</label>
+                            <%--<div class="form-group">--%>
+                                <%--<label class="col-sm-3 control-label no-padding-right" for="avatar">头像</label>--%>
 
-                                <div class="col-sm-9">
-                                    <span class="profile-picture">
-                                        <img data-pk="13" alt="Alex's Avatar" class="img-responsive" id="avatar" src="${studentOperateVo.studentVo.picture}"/>
-                                        <input type="hidden" name="picture" id="pic_hidden" value="${studentOperateVo.studentVo.picture}"/>
-                                    </span>
-                                </div>
-                            </div>
+                                <%--<div class="col-sm-9">--%>
+                                    <%--<span class="profile-picture">--%>
+                                        <%--<img data-pk="13" alt="Alex's Avatar" class="img-responsive" id="avatar" src="${studentOperateVo.studentVo.picture}"/>--%>
+                                        <%--<input type="hidden" name="picture" id="pic_hidden" value="${studentOperateVo.studentVo.picture}"/>--%>
+                                    <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
 
                             <%--<div class="form-group">--%>
                                 <%--<label class="col-sm-3 control-label no-padding-right" for="id">客户编号</label>--%>
