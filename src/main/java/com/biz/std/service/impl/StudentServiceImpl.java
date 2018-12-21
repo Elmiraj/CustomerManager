@@ -49,7 +49,8 @@ public class StudentServiceImpl implements StudentService{
             return cb.and(predicates.toArray(new Predicate[predicates.size()]));
         },PageRequest.of(reqVo.getPageIndex()-1,reqVo.getPageSize()));
         PageVo pageVo = Utils.getPageVo(reqVo,students);
-        List<StudentVo> studentVoList = StudentConverter.toVoList(students.getContent());
+        List<Student> studentList = studentRepository.findAllByOrderByName();
+        List<StudentVo> studentVoList = StudentConverter.toVoList(studentList);
         return new StudentListVo(pageVo,studentVoList);
     }
 
