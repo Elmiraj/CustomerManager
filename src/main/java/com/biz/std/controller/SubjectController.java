@@ -12,16 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 /**
- * 学科信息的控制器
- * Created by haojia.wang on 2017/5/27.
+ * SubjectController class
+ * @author junzhang
+ * @date 2018-12-20
  */
 @Controller
 @RequestMapping(value = "subject")
 public class SubjectController {
 
+    private final SubjectService subjectService;
+
     @Autowired
-    private SubjectService subjectService;
+    public SubjectController(SubjectService subjectService) {
+        this.subjectService = subjectService;
+    }
 
     /**
      * 学科信息列表
@@ -29,8 +36,8 @@ public class SubjectController {
     @RequestMapping(value = "list")
     public ModelAndView list(PageReqVo reqVo) {
         ModelAndView modelAndView = new ModelAndView("subject/list");
-//        SubjectListVo subjectListVo = subjectService.findSubjectList(reqVo);
-//        modelAndView.addObject("subjectListVo", subjectListVo);
+        List<SubjectVo> subjectVoList = subjectService.findSubjectList();
+        modelAndView.addObject("subjectVoList",subjectVoList);
         return modelAndView;
     }
 
@@ -86,18 +93,8 @@ public class SubjectController {
      */
     @RequestMapping(value = "update")
     public ModelAndView update(SubjectVo subjectVo) {
-        SubjectVo existSubjectVo = subjectService.getSubject(subjectVo.getName());
-        if (existSubjectVo == null){
-            subjectService.saveSubject(subjectVo);
-            return new ModelAndView("redirect:list.do");
-        }else{
-            ModelAndView modelAndView = new ModelAndView("subject/update");
-            SubjectOperateVo subjectOperateVo = new SubjectOperateVo();
-            subjectOperateVo.setSubjectVo(subjectVo);
-            subjectOperateVo.setError("学科名已经存在!");
-            modelAndView.addObject("subjectOperateVo",subjectOperateVo);
-            return modelAndView;
-        }
+        subjectService.saveSubject(subjectVo);
+        return new ModelAndView("redirect:list.do");
     }
 
     /**

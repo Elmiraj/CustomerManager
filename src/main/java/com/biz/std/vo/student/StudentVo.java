@@ -12,32 +12,54 @@ import java.util.List;
  */
 public class StudentVo {
 
-    //学号
+    /**
+     * id
+     */
     private Long id;
 
-    //姓名
+    /**
+     * 姓名
+     */
     private String name;
 
-    //照片
+    /**
+     * 照片
+     */
     private String picture;
 
-    //性别
+    /**
+     * 性别
+     */
     private Integer sex;
 
-    //生日
+    /**
+     * 生日
+     */
     private Date birthday;
 
-    //所在班级名字
+    /**
+     * 所在地址
+     */
     private String gradeName;
 
-    //选修科目数
+    /**
+     * 选择货物数
+     */
     private Integer subjectCount;
 
-    //平均分
+    /**
+     * 平均数
+     */
     private BigDecimal avgScore;
 
+    /**
+     * 总数
+     */
     private BigDecimal totalScore;
 
+    /**
+     * 是否付款
+     */
     private Integer isPaid;
 
     public Integer getIsPaid() {
@@ -48,10 +70,14 @@ public class StudentVo {
         this.isPaid = isPaid;
     }
 
-    //班级ID
+    /**
+     * 地址ID
+     */
     private Long gradeId;
 
-    //科目及分数等信息集合
+    /**
+     * 货物及数量等信息集合
+     */
     private List<ScoreVo> scoreVoList;
 
     public void setSubjectCount(Integer subjectCount) {

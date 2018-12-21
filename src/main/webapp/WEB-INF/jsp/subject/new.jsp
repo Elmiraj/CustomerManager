@@ -397,6 +397,25 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="price">单价</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="price" name="price" class="col-xs-10 col-sm-5"
+                                           maxlength="20" placeholder="请输入数字"
+                                           value="${(subjectOperateVo != null) ? subjectOperateVo.subjectVo.price : ""}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="stock">库存</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="stock" name="stock" class="col-xs-10 col-sm-5"
+                                           maxlength="20" placeholder="请输入数字"
+                                           value="${(subjectOperateVo != null) ? subjectOperateVo.subjectVo.stock : ""}"/>
+                                </div>
+                            </div>
 
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">

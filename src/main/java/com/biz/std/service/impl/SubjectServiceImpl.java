@@ -23,8 +23,11 @@ import java.util.List;
 
 /**
  * 学科信息操作的实现类
- * Created by haojia.wang on 2017/5/26.
+ * SubjectServiceImpl class
+ * @author junzhang
+ * @date 2018-12-21
  */
+
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
@@ -39,13 +42,11 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public SubjectListVo findSubjectList(PageReqVo reqVo) {
-        Page<Subject> subjects = subjectRepository.findAll(new Specification<Subject>() {
-            @Override
-            public Predicate toPredicate(Root<Subject> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                return null;
-            }
-        },new PageRequest(reqVo.getPageIndex()-1,reqVo.getPageSize()));
-        List<SubjectVo> subjectVoList = SubjectConverter.toVoList(subjects.getContent());
+        Page<Subject> subjects = subjectRepository.findAll((Specification<Subject>) (root, query, cb) -> null,
+                PageRequest.of(reqVo.getPageIndex()-1,reqVo.getPageSize()));
+        // List<SubjectVo> subjectVos = SubjectConverter.toVoList(subjects.getContent());
+        List<Subject> subject = subjectRepository.findAllByOrderByName();
+        List<SubjectVo> subjectVoList = SubjectConverter.toVoList(subject);
         PageVo pageVo = Utils.getPageVo(reqVo,subjects);
         return new SubjectListVo(pageVo,subjectVoList);
     }

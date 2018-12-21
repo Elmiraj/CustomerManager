@@ -1,11 +1,14 @@
 package com.biz.std.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 学生PO
+ * Subject class
+ * @author junzhang
+ * @date 2018-12-20
  */
 @Entity
 @Table(name = "subject",indexes = {@Index(columnList = "id",unique = true)})
@@ -29,13 +32,14 @@ public class Subject extends BaseEntity{
     @OneToMany(mappedBy = "subject",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     private List<Score> scores = new ArrayList<>();
 
-//    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
+    /**
+     * 单价
+     */
+    @Column(length = 20)
+    private BigDecimal price;
+
+    @Column(length = 20)
+    private BigDecimal stock;
 
     public String getName() {
         return name;
@@ -51,5 +55,21 @@ public class Subject extends BaseEntity{
 
     public void setScores(List<Score> scores) {
         this.scores = scores;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getStock() {
+        return stock;
+    }
+
+    public void setStock(BigDecimal stock) {
+        this.stock = stock;
     }
 }

@@ -12,14 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 班级信息的控制器
- * Created by haojia.wang on 2017/5/25.
+ * GradeController class
+ * @author junzhang
+ * @date 2018-12-20
  */
 @Controller
 @RequestMapping(value = "grade")
 public class GradeController {
 
+    private final GradeService gradeService;
+
     @Autowired
-    private GradeService gradeService;
+    public GradeController(GradeService gradeService) {
+        this.gradeService = gradeService;
+    }
 
     /**
      * 班级信息列表
@@ -51,9 +57,7 @@ public class GradeController {
             return new ModelAndView("redirect:list.do");
         }else{
             ModelAndView modelAndView = new ModelAndView("grade/new");
-            GradeOperateVo gradeOperateVo = new GradeOperateVo();
-            gradeOperateVo.setGradeVo(gradeVo);
-            gradeOperateVo.setError("班级名已经存在!");
+            GradeOperateVo gradeOperateVo = addObject(gradeVo);
             modelAndView.addObject("gradeOperateVo",gradeOperateVo);
             return modelAndView;
         }
@@ -83,10 +87,8 @@ public class GradeController {
             return new ModelAndView("redirect:list.do");
         }else{
             ModelAndView modelAndView = new ModelAndView("grade/update");
-            GradeOperateVo gradeOperateVo = new GradeOperateVo();
-            gradeOperateVo.setGradeVo(gradeVo);
-            gradeOperateVo.setError("班级名已经存在!");
-            modelAndView.addObject("gradeOperateVo",gradeOperateVo);
+            GradeOperateVo gradeOperateVo = addObject(gradeVo);
+            modelAndView.addObject("gradeOperateVo", gradeOperateVo);
             return modelAndView;
         }
     }
@@ -100,4 +102,10 @@ public class GradeController {
         return "redirect:list.do";
     }
 
+    private GradeOperateVo addObject(GradeVo gradeVo){
+        GradeOperateVo gradeOperateVo = new GradeOperateVo();
+        gradeOperateVo.setGradeVo(gradeVo);
+        gradeOperateVo.setError("班级名已经存在!");
+        return gradeOperateVo;
+    }
 }

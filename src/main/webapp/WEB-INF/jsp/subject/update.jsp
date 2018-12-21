@@ -390,7 +390,7 @@
                         <form class="form-horizontal" role="form"
                               action="${pageContext.request.contextPath}/subject/update.do" method="post">
 
-                            <input type="hidden" name="id" value="${subjectVo.id}"/>
+                            <input type="hidden" name="id" value="${subjectOperateVo.subjectVo.id}"/>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right" for="name">货物名字</label>
@@ -399,6 +399,26 @@
                                     <input type="text" id="name" name="name" class="col-xs-10 col-sm-5"
                                            maxlength="20"
                                            value="${subjectOperateVo.subjectVo.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="price">货物单价</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="price" name="price" class="col-xs-10 col-sm-5"
+                                           maxlength="20"
+                                           value="${subjectOperateVo.subjectVo.price}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="stock">货物库存</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="stock" name="stock" class="col-xs-10 col-sm-5"
+                                           maxlength="20"
+                                           value="${subjectOperateVo.subjectVo.stock}"/>
                                 </div>
                             </div>
 

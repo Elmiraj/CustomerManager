@@ -588,7 +588,7 @@
 
                                                                     <div class="profile-user-info profile-user-info-striped">
                                                                         <div class="profile-info-row">
-                                                                            <div class="profile-info-name"> 姓名</div>
+                                                                            <div class="profile-info-name" style="background-color: #a5dce4"> 姓名</div>
 
                                                                             <div class="profile-info-value">
                                                                             <span>
@@ -601,7 +601,7 @@
                                                                                    items="${studentListVo.studentVoList.get(index).scoreVoList}">
 
                                                                             <div class="profile-info-row">
-                                                                                <div class="profile-info-name">
+                                                                                <div class="profile-info-name" style="background-color: #2ECEE7">
                                                                                     <c:out value="${scoreVo.subjectName}"/>
                                                                                 </div>
 
@@ -612,7 +612,36 @@
                                                                                 </div>
                                                                             </div>
 
+                                                                            <div class="profile-info-row">
+                                                                                <div class="profile-info-name"> 单价</div>
+
+                                                                                <div class="profile-info-value">
+                                                                            <span>
+                                                                                <c:out value="${scoreVo.price}"/>
+                                                                            </span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="profile-info-row">
+                                                                                <div class="profile-info-name"> 总价</div>
+
+                                                                                <div class="profile-info-value">
+                                                                            <span>
+                                                                                <c:out value="${scoreVo.totalPrice}"/>
+                                                                            </span>
+                                                                                </div>
+                                                                            </div>
+
                                                                         </c:forEach>
+                                                                        <%--<div class="profile-info-row">--%>
+                                                                            <%--<div class="profile-info-name"> 货物总价</div>--%>
+
+                                                                            <%--<div class="profile-info-value">--%>
+                                                                            <%--<span>--%>
+                                                                                <%--<c:out value="${studentListVo.studentVoList.get(index).scoreVoList.totalTotalPrice}"/>--%>
+                                                                            <%--</span>--%>
+                                                                            <%--</div>--%>
+                                                                        <%--</div>--%>
 
                                                                     </div>
 

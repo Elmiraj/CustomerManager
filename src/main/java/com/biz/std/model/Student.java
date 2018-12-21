@@ -7,19 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 学生po
- * Create by haojia.wang on 2017/5/27
+ * 客户po
+ * Student class
+ * @author junzhang
+ * @date 2018-12-20
  */
 @Entity
 @Table(name = "student",indexes = {@Index(columnList = "id", unique = true)})
 public class Student extends BaseEntity implements Serializable{
-
-    /**
-     * 学号，主键
-     */
-    // @Id
-    // @Column(nullable = false)
-    // private Long id;
 
     /**
      * 姓名
@@ -30,7 +25,7 @@ public class Student extends BaseEntity implements Serializable{
     /**
      * 照片
      */
-    @Column(length = 255)
+    @Column()
     private String picture;
 
     /**
@@ -68,14 +63,6 @@ public class Student extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Score> scores = new ArrayList<>();
 
-    // public Long getId() {
-    //     return id;
-    // }
-    //
-    // public void setId(Long id) {
-    //     this.id = id;
-    // }
-
     private Integer isPaid;
 
     public Integer getIsPaid() {
@@ -85,13 +72,6 @@ public class Student extends BaseEntity implements Serializable{
     public void setIsPaid(Integer isPaid) {
         this.isPaid = isPaid;
     }
-    //    public List<Subject> getSubjects() {
-//        return subjects;
-//    }
-
-//    public void setSubjects(List<Subject> subjects) {
-//        this.subjects = subjects;
-//    }
 
     public String getName() {
         return name;

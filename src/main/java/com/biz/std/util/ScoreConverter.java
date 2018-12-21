@@ -5,6 +5,7 @@ import com.biz.std.model.Student;
 import com.biz.std.model.Subject;
 import com.biz.std.vo.score.ScoreVo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,12 @@ public class ScoreConverter {
         scoreVo.setSubjectId(score.getSubject().getId());
         scoreVo.setSubjectName(score.getSubject().getName());
         scoreVo.setScore(score.getScore());
+        scoreVo.setStock(score.getSubject().getStock());
+        scoreVo.setPrice(score.getSubject().getPrice());
+        if (scoreVo.getPrice() == null){
+            scoreVo.setPrice(BigDecimal.ONE);
+        }
+        scoreVo.setTotalPrice(score.getScore().multiply(scoreVo.getPrice()).setScale(2,BigDecimal.ROUND_HALF_UP));
         return scoreVo;
     }
 
@@ -51,7 +58,7 @@ public class ScoreConverter {
     /**
      * 分数vo集合转po集合
      */
-    public static List<Score> toPoList(List<ScoreVo> scoreVoList){
+    static List<Score> toPoList(List<ScoreVo> scoreVoList){
         List<Score> scoreList = new ArrayList<>();
         if (scoreVoList != null){
             for (ScoreVo scoreVo:scoreVoList) {
@@ -64,7 +71,7 @@ public class ScoreConverter {
     /**
      * 分数po集合转vo集合
      */
-    public static List<ScoreVo> toVoList(List<Score> scoreList){
+    static List<ScoreVo> toVoList(List<Score> scoreList){
         List<ScoreVo> scoreVoList = new ArrayList<>();
         for (Score score:scoreList) {
             scoreVoList.add(toVo(score));

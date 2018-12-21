@@ -7,28 +7,65 @@ import java.math.BigDecimal;
  */
 public class ScoreVo {
 
-    //数据源ID
+    /**
+     * 数据源ID
+     */
     private Long id;
 
-    //学生ID
+    /**
+     * 客户ID
+     */
     private Long studentId;
 
-    //学生姓名
+    /**
+     * 客户姓名
+     */
     private String studentName;
 
-    //学科ID
+    /**
+     * 货物ID
+     */
     private Long subjectId;
 
-    //学科名
+    /**
+     * 货物名
+     */
     private String subjectName;
 
-    //分数
+    /**
+     * 数量
+     */
     private BigDecimal score;
 
-    //学生选课的时候课程的选中状态
+    /**
+     * 客户订货时货物的选中状态
+     */
     private boolean checked;
 
+    /**
+     * 总数
+     */
     private BigDecimal totalScore;
+
+    /**
+     * 货物单价
+     */
+    private BigDecimal price;
+
+    /**
+     * 货物总价
+     */
+    private BigDecimal totalPrice;
+
+    /**
+     * 所有货物的总价
+     */
+    private BigDecimal totalTotalPrice;
+
+    /**
+     * 库存
+     */
+    private BigDecimal stock;
 
     public Long getId() {
         return id;
@@ -92,5 +129,37 @@ public class ScoreVo {
 
     public void setTotalScore(BigDecimal totalScore) {
         this.totalScore = totalScore;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public BigDecimal getTotalTotalPrice() {
+        return totalTotalPrice;
+    }
+
+    public void setTotalTotalPrice(BigDecimal totalTotalPrice) {
+        this.totalTotalPrice = totalTotalPrice;
+    }
+
+    public BigDecimal getStock() {
+        return stock;
+    }
+
+    public void setStock(BigDecimal stock) {
+        this.stock = stock;
     }
 }

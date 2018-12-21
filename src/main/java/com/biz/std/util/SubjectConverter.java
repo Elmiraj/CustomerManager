@@ -16,7 +16,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class SubjectConverter {
 
-
     private SubjectConverter(){
         super();
     }
@@ -24,16 +23,18 @@ public class SubjectConverter {
     /**
      * 学科po转vo
      */
-    public static SubjectVo toVo(Subject subject){
+    public static SubjectVo toVo(Subject subject) {
         SubjectVo subjectVo = new SubjectVo();
         subjectVo.setId(subject.getId());
         subjectVo.setName(subject.getName());
+        subjectVo.setPrice(subject.getPrice());
+        subjectVo.setStock(subject.getStock());
         subjectVo.setCount(subject.getScores().size());
         subjectVo.setAvgScore(Utils.avgScore(subject.getScores()));
         subjectVo.setTotalScore(Utils.totalScore(subject.getScores()));
         return subjectVo;
-    }
 
+    }
     /**
      * 学科vo转po
      */
@@ -41,6 +42,8 @@ public class SubjectConverter {
         Subject subject = new Subject();
         subject.setId(subjectVo.getId());
         subject.setName(subjectVo.getName());
+        subject.setPrice(subjectVo.getPrice());
+        subject.setStock(subjectVo.getStock());
         return subject;
     }
 

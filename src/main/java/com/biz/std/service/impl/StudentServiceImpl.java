@@ -43,15 +43,11 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public StudentListVo findStudentList(PageReqVo reqVo) {
-        Page<Student> students = studentRepository.findAll(new Specification<Student>() {
-            @Override
-            public Predicate toPredicate(Root<Student> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                List<Predicate> predicates = new ArrayList<>();
+        Page<Student> students = studentRepository.findAll((Specification<Student>) (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
 
-//                predicates.add(cb.equal(root.get("name").as(String.class),"王昊佳"));
-                return cb.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        },new PageRequest(reqVo.getPageIndex()-1,reqVo.getPageSize()));
+            return cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        },PageRequest.of(reqVo.getPageIndex()-1,reqVo.getPageSize()));
         PageVo pageVo = Utils.getPageVo(reqVo,students);
         List<StudentVo> studentVoList = StudentConverter.toVoList(students.getContent());
         return new StudentListVo(pageVo,studentVoList);

@@ -6,9 +6,11 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
- * po基类
- * Created by haojia.wang on 2017/5/27
+ * BaseEntity class
+ * @author junzhang
+ * @date 2018-12-20
  */
+
 @SuppressWarnings("serial")
 @MappedSuperclass
 public class BaseEntity implements Serializable{

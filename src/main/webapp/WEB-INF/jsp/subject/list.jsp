@@ -186,18 +186,19 @@
 
         function addTr(data){
             var trHtml = '';
-
             for(var index = 0; index<data.subjectVoList.length;index++){
                 trHtml += "<tr>";
                 trHtml += '<td>'+(index+1)+'</td>';
                 trHtml += '<td>'+data.subjectVoList[index].name+'</td>';
+                trHtml += '<td>'+data.subjectVoList[index].price+'</td>';
                 trHtml += '<td>'+data.subjectVoList[index].count+'</td>';
                 trHtml += '<td>'+data.subjectVoList[index].totalScore+'</td>';
+                trHtml += '<td>'+data.subjectVoList[index].stock+'</td>';
                 trHtml += '<td>';
                 trHtml += '<div class="hidden-sm hidden-xs action-buttons">';
-                trHtml += '<a class="green" href="javascript:void(0);" onclick=\"onUpdateClick(';
+                trHtml += '<a class="green" href="javascript:void(0);" onclick="onUpdateClick(';
                 trHtml += data.subjectVoList[index].id;
-                trHtml += '\"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>';
+                trHtml += ')"> <i class="ace-icon fa fa-pencil bigger-130"></i> </a>';
                 trHtml += '<a class="red" href="#modal-message" role="button" onclick="onDeleteClick(';
                 trHtml += data.subjectVoList[index].id;
                 trHtml += ')" data-toggle="modal"><i class="ace-icon fa fa-trash-o bigger-130"></i> </a></div>';
@@ -208,9 +209,9 @@
                 trHtml += '<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">';
                 trHtml += '<li><a href="javascript:void(0);"  onclick="onUpdateClick(';
                 trHtml += data.subjectVoList[index].id;
-                trHtml += ')"class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">';
+                trHtml += ')" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">';
                 trHtml += '<span class="green"> <i class="ace-icon fa fa-pencil-square-o bigger-120"></i> </span></a> </li>';
-                trHtml += '<li> <a class="tooltip-error" data-rel="tooltip"title="" href="#modal-message" role="button"onclick="onDeleteClick(';
+                trHtml += '<li> <a class="tooltip-error" data-rel="tooltip"title="" href="#modal-message" role="button" onclick="onDeleteClick(';
                 trHtml += data.subjectVoList.id;
                 trHtml += ')" data-toggle="modal" data-original-title="删除">';
                 trHtml += '<span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span></a> </li> </ul> </div> </div> </td>';
@@ -519,9 +520,9 @@
                                                              class="form-control input-sm"
                                                              onchange="onPageSizeChange()"
                                                         >
-                                                <option value="5">5</option>
-                                                <option value="10">10</option>
-                                                <option value="15">15</option>
+                                                <option value="30">30</option>
+                                                <option value="60">60</option>
+                                                <option value="90">90</option>
                                             </select>条
                                             </label>
                                         </div>
@@ -536,8 +537,10 @@
                                             <tr>
                                                 <th>序号</th>
                                                 <th>货物名</th>
+                                                <th>单价</th>
                                                 <th>订货人数</th>
                                                 <th>订货总数</th>
+                                                <th>库存</th>
                                                 <th>修改/删除</th>
                                             </tr>
                                             </thead>

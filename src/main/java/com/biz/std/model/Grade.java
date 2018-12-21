@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 班级PO
- * Created by haojia.wang on 2017/5/27.
+ * Grade class
+ * @author junzhang
+ * @date 2018-12-20
  */
+
 @Entity
 @Table(name = "grade",indexes = {@Index(columnList = "id", unique = true)})
 public class Grade extends BaseEntity{

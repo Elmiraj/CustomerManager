@@ -4,8 +4,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * 分数po
- * Create by haojia.wang on 2017/5/27
+ * Score class
+ * @author junzhang
+ * @date 2018-12-20
  */
 @Entity
 @Table(name = "score",indexes = {@Index(columnList = "id", unique = true)})

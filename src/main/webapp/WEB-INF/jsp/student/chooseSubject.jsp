@@ -407,6 +407,8 @@
                                                         </th>
                                                         <th>序号</th>
                                                         <th>货物名</th>
+                                                        <th>单价</th>
+                                                        <th>库存</th>
                                                         <th>订货数量</th>
                                                         <th>选货人数</th>
                                                     </tr>
@@ -437,8 +439,17 @@
                                                             </td>
 
                                                             <td>
+                                                                <c:out value="${subjectVoList.get(index).price}"/>
+                                                            </td>
+
+                                                            <td id="stock">
+                                                                <c:out value="${subjectVoList.get(index).stock}"/>
+                                                            </td>
+
+                                                            <td>
                                                                 <label>
                                                                     <input type="text" name="scoreVoList[${index}].score"
+                                                                           id="score"
                                                                            value="${studentVo.scoreVoList.get(index).score}"
                                                                            placeholder="请输入数字"/>
                                                                 </label>
@@ -580,10 +591,21 @@
 
         //select/deselect a row when the checkbox is checked/unchecked
         $('#simple-table').on('click', 'td input[type=checkbox]', function () {
+            // debugger;
             var $row = $(this).closest('tr');
             if ($row.is('.detail-row ')) return;
             if (this.checked) $row.addClass(active_class);
             else $row.removeClass(active_class);
+            // var table_trs = $("#simple-table tbody tr");
+            // for(var tr = 0 ;tr < table_trs.length;tr++){
+            //     var $tr = $(table_trs[tr]);
+            //     var stock = $tr.find("td").eq(4).text();
+            //     var score = $tr.find("td").eq(5).find("input").val();
+            //     if(stock < score){
+            //         alert($tr.find("td").eq(2).text()+"库存不足");
+            //         return;
+            //     }
+            // }
         });
 
         $('#id-disable-check').on('click', function () {

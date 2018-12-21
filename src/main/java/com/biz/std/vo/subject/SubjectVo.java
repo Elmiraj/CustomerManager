@@ -33,7 +33,25 @@ public class SubjectVo {
      */
     private BigDecimal avgScore;
 
+    /**
+     * 货物总数
+     */
     private BigDecimal totalScore;
+
+    /**
+     * 单价
+     */
+    private BigDecimal price;
+
+    /**
+     * 总价
+     */
+    private BigDecimal totalPrice;
+
+    /**
+     * 库存
+     */
+    private BigDecimal stock;
 
     public SubjectVo(){
         super();
@@ -87,5 +105,29 @@ public class SubjectVo {
 
     public void setTotalScore(BigDecimal totalScore) {
         this.totalScore = totalScore;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public BigDecimal getStock() {
+        return stock;
+    }
+
+    public void setStock(BigDecimal stock) {
+        this.stock = stock;
     }
 }
