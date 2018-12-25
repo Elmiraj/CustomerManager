@@ -10,9 +10,14 @@ import com.biz.std.vo.score.ScoreVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
- * 分数信息操作的实现类
+ * ScoreServiceImpl class
+ * @author junzhang
+ * @date 2018-12-25
  */
+
 @Service
 public class ScoreServiceImpl implements ScoreService {
 
@@ -30,5 +35,11 @@ public class ScoreServiceImpl implements ScoreService {
             return ScoreConverter.toVo(score);
         }
         return null;
+    }
+
+    @Override
+    public List<ScoreVo> findScoreList(Long id){
+        List<Score> scoreList = scoreRepository.findAllByStudentId(id);
+        return ScoreConverter.toVoList(scoreList);
     }
 }

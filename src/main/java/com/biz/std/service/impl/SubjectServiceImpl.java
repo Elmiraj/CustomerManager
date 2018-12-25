@@ -15,10 +15,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -31,8 +27,12 @@ import java.util.List;
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
+    private final SubjectRepository subjectRepository;
+
     @Autowired
-    private SubjectRepository subjectRepository;
+    public SubjectServiceImpl(SubjectRepository subjectRepository) {
+        this.subjectRepository = subjectRepository;
+    }
 
     @Override
     public List<SubjectVo> findSubjectList() {
@@ -44,7 +44,6 @@ public class SubjectServiceImpl implements SubjectService {
     public SubjectListVo findSubjectList(PageReqVo reqVo) {
         Page<Subject> subjects = subjectRepository.findAll((Specification<Subject>) (root, query, cb) -> null,
                 PageRequest.of(reqVo.getPageIndex()-1,reqVo.getPageSize()));
-        // List<SubjectVo> subjectVos = SubjectConverter.toVoList(subjects.getContent());
         List<Subject> subject = subjectRepository.findAllByOrderByName();
         List<SubjectVo> subjectVoList = SubjectConverter.toVoList(subject);
         PageVo pageVo = Utils.getPageVo(reqVo,subjects);

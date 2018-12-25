@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 分数的VO/PO转换类
- * Created by haojia.wang on 2017/5/26.
+ * ScoreConverter class
+ * @author junzhang
+ * @date 2018-12-25
  */
+
 public class ScoreConverter {
 
     private ScoreConverter(){
@@ -45,6 +47,7 @@ public class ScoreConverter {
     public static Score toPo(ScoreVo scoreVo){
         Score score = new Score();
         score.setId(scoreVo.getId());
+        score.setStock(scoreVo.getStock());
         Student student = new Student();
         student.setId(scoreVo.getStudentId());
         score.setStudent(student);
@@ -52,6 +55,7 @@ public class ScoreConverter {
         subject.setId(scoreVo.getSubjectId());
         score.setSubject(subject);
         score.setScore(scoreVo.getScore());
+        subject.setStock(scoreVo.getStock());
         return score;
     }
 
@@ -71,7 +75,7 @@ public class ScoreConverter {
     /**
      * 分数po集合转vo集合
      */
-    static List<ScoreVo> toVoList(List<Score> scoreList){
+    public static List<ScoreVo> toVoList(List<Score> scoreList){
         List<ScoreVo> scoreVoList = new ArrayList<>();
         for (Score score:scoreList) {
             scoreVoList.add(toVo(score));

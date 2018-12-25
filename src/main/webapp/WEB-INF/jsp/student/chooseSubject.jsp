@@ -395,7 +395,7 @@
                                         <c:when test="${subjectVoList.size() > 0}">
 
                                             <div class="table-responsive">
-                                                <table id="simple-table"
+                                                <table id="simple-table" style="width: fit-content"
                                                        class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                     <tr>
@@ -430,6 +430,8 @@
 
                                                             <input type="hidden" name="scoreVoList[${index}].subjectId"
                                                                    value="${subjectVoList.get(index).id}"/>
+                                                            <input type="hidden" name="scoreVoList[${index}].oldScore"
+                                                                   value="${subjectVoList.get(index).score}"/>
                                                             <td>
                                                                 <c:out value="${index+1}"/>
                                                             </td>
@@ -449,9 +451,7 @@
                                                             <td>
                                                                 <label>
                                                                     <input type="text" name="scoreVoList[${index}].score"
-                                                                           id="score"
-                                                                           value="${studentVo.scoreVoList.get(index).score}"
-                                                                           placeholder="请输入数字"/>
+                                                                           value="${subjectVoList.get(index).score}"/>
                                                                 </label>
                                                             </td>
 

@@ -6,6 +6,8 @@ import com.biz.std.model.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import java.util.List;
+
 /**
  * 分数信息的数据库操作接口
  */
@@ -15,5 +17,7 @@ public interface ScoreRepository extends JpaRepository<Score,Long>,JpaSpecificat
      * 获取指定学生指定科目的成绩
      */
     Score getScoreByStudentAndSubject(Student student, Subject subject);
+
+    List<Score> findAllByStudentId(Long id);
 
 }

@@ -172,6 +172,7 @@
             };
             listData(dataObj);
         }
+
         function listData(dataObj){
             $.ajax({
                 type: 'post',
@@ -192,6 +193,14 @@
                 trHtml += '<td>'+data.subjectVoList[index].name+'</td>';
                 trHtml += '<td>'+data.subjectVoList[index].price+'</td>';
                 trHtml += '<td>'+data.subjectVoList[index].count+'</td>';
+                trHtml += '<td class="center">';
+                trHtml += '<div class="action-buttons">';
+                trHtml += '<a href="#" class="green bigger-140 show-details-btn" title="Show Details">';
+                trHtml += '<i class="ace-icon fa fa-angle-double-down"></i>';
+                trHtml += '<span class="sr-only">Details</span>';
+                trHtml += '</a>';
+                trHtml += '</div>';
+                trHtml += '</td>';
                 trHtml += '<td>'+data.subjectVoList[index].totalScore+'</td>';
                 trHtml += '<td>'+data.subjectVoList[index].stock+'</td>';
                 trHtml += '<td>';
@@ -215,11 +224,37 @@
                 trHtml += data.subjectVoList.id;
                 trHtml += ')" data-toggle="modal" data-original-title="删除">';
                 trHtml += '<span class="red"> <i class="ace-icon fa fa-trash-o bigger-120"></i> </span></a> </li> </ul> </div> </div> </td>';
+                trHtml += "</tr>";
+                trHtml += "<tr class=\"detail-row\">";
+                trHtml += '<td colspan="13">';
+                trHtml += '<div class="table-detail">';
+                trHtml += '<div class="row">';
+                trHtml += '<div class="col-xs-12 col-sm-10">';
+                trHtml += '<div class="space visible-xs"></div>';
+                trHtml += '<div class="profile-user-info profile-user-info-striped">';
+                trHtml += '<c:forEach var="scoreVo" items="${subjectVoList.get(index).scoreVoList}">';
+                trHtml += '<div class="profile-info-row">';
+                trHtml += '<div class="profile-info-name" style="background-color: #bce2e8;">';
+                trHtml += '<c:out value="${scoreVo.studentName}"/>';
+                trHtml += '</div>';
+                trHtml += '<div class="profile-info-value">';
+                trHtml += '<span>';
+                trHtml += '<c:out value="${scoreVo.score}"/>';
+                trHtml += '</span>';
+                trHtml += '</div>';
+                trHtml += '</div>';
+                trHtml += '</c:forEach>';
+                trHtml += '</div>';
+                trHtml += '</div>';
+                trHtml += '</div>';
+                trHtml += '</div>';
+                trHtml += '</td>';
                 trHtml += "</tr>"
             }
 
             $('#tbody').html(trHtml);
 
+            x();
             var pageHtml = '';
 
             if (!data.pageVo.hasPrevious){
@@ -529,23 +564,145 @@
                                     </div>
                                 </div>
 
-                                <%--<c:choose>--%>
-                                    <%--<c:when test="${subjectListVo.pageVo.pageCount > 0}">--%>
-
-                                        <table id="simple-table" class="table table-striped table-bordered table-hover">
+                                        <table id="simple-table" class="table table-striped table-bordered table-hover" style="width: fit-content">
                                             <thead>
                                             <tr>
                                                 <th>序号</th>
                                                 <th>货物名</th>
                                                 <th>单价</th>
                                                 <th>订货人数</th>
+                                                <th>详情</th>
                                                 <th>订货总数</th>
                                                 <th>库存</th>
                                                 <th>修改/删除</th>
                                             </tr>
                                             </thead>
 
-                                            <tbody id="tbody">
+                                            <tbody>
+                                            <c:forEach var="index" begin="0"
+                                                       end="${subjectVoList.size()-1}" step="1">
+                                                <tr>
+
+                                                    <td>
+                                                        <c:out value="${index+1}"/>
+                                                    </td>
+
+                                                        <%--<td>--%>
+                                                        <%--<c:out value="${studentListVo.studentVoList.get(index).id}"/>--%>
+                                                        <%--</td>--%>
+
+                                                    <td>
+                                                        <c:out value="${subjectVoList.get(index).name}"/>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${subjectVoList.get(index).price}"/>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${subjectVoList.get(index).count}"/>
+                                                    </td>
+
+                                                    <td class="center">
+                                                        <div class="action-buttons">
+                                                            <a href="#" class="green bigger-140 show-details-btn"
+                                                               title="Show Details">
+                                                                <i class="ace-icon fa fa-angle-double-down"></i>
+                                                                <span class="sr-only">Details</span>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${subjectVoList.get(index).totalScore}"/>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${subjectVoList.get(index).stock}"/>
+                                                    </td>
+
+                                                    <td>
+                                                    <div class="hidden-sm hidden-xs action-buttons">
+                                                        <a class="green" href="javascript:void(0);"
+                                                           onclick="onUpdateClick(${subjectVoList.get(index).id})">
+                                                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                        </a>
+                                                        <a class="red" href="#modal-message" role="button"
+                                                           onclick="onDeleteClick(${subjectVoList.get(index).id})"
+                                                           data-toggle="modal">
+                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="hidden-md hidden-lg">
+                                                        <div class="inline pos-rel">
+                                                            <button class="btn btn-minier btn-yellow dropdown-toggle"
+                                                                    data-toggle="dropdown" data-position="auto">
+                                                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow
+                                                            dropdown-menu-right dropdown-caret dropdown-close">
+                                                                <li><a href="javascript:void(0);"
+                                                                       onclick="onUpdateClick(${subjectVoList.get(index).id})"
+                                                                       class="tooltip-success" data-rel="tooltip" title=""
+                                                                       data-original-title="修改">
+                                                                    <span class="green">
+                                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="tooltip-error" data-rel="tooltip" title=""
+                                                                       href="#modal-message" role="button"
+                                                                       onclick="onDeleteClick(${subjectVoList.get(index).id})"
+                                                                       data-toggle="modal" data-original-title="删除">
+                                                                <span class="red">
+                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="detail-row">
+                                                    <td colspan="13">
+                                                        <div class="table-detail">
+                                                            <div class="row">
+
+                                                                <div class="col-xs-12 col-sm-10">
+                                                                    <div class="space visible-xs"></div>
+
+                                                                    <div class="profile-user-info profile-user-info-striped">
+
+                                                                        <c:forEach var="scoreVo"
+                                                                                   items="${subjectVoList.get(index).scoreVoList}">
+
+                                                                            <div class="profile-info-row">
+                                                                                <div class="profile-info-name" style="background-color: #bce2e8;">
+                                                                                    <c:out value="${scoreVo.studentName}"/>
+                                                                                </div>
+
+                                                                                <div class="profile-info-value">
+                                                                            <span>
+                                                                                <c:out value="${scoreVo.score}"/>
+                                                                            </span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </c:forEach>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                            </c:forEach>
                                             </tbody>
                                         </table>
 

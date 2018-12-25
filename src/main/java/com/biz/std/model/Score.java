@@ -32,6 +32,9 @@ public class Score extends BaseEntity{
     @Column(nullable = false)
     private BigDecimal score;
 
+    @Column()
+    private BigDecimal stock;
+
     public Subject getSubject() {
         return subject;
     }
@@ -54,5 +57,13 @@ public class Score extends BaseEntity{
 
     public void setScore(BigDecimal score) {
         this.score = score;
+    }
+
+    public BigDecimal getStock() {
+        return stock;
+    }
+
+    public void setStock(BigDecimal stock) {
+        this.stock = stock;
     }
 }

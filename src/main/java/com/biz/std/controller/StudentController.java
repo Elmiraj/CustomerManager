@@ -1,11 +1,14 @@
 package com.biz.std.controller;
 
 import com.biz.std.service.GradeService;
+import com.biz.std.service.ScoreService;
 import com.biz.std.service.StudentService;
 import com.biz.std.service.SubjectService;
+import com.biz.std.util.Exception.BusinessException;
 import com.biz.std.util.FileUpLoadUtil;
 import com.biz.std.vo.PageReqVo;
 import com.biz.std.vo.grade.GradeVo;
+import com.biz.std.vo.score.ScoreVo;
 import com.biz.std.vo.student.StdSubVo;
 import com.biz.std.vo.student.StudentListVo;
 import com.biz.std.vo.student.StudentOperateVo;
@@ -18,24 +21,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * 学生信息的控制器
- * Created by haojia.wang on 2017/5/25.
+ * StudentController class
+ * @author junzhang
+ * @date 2018-12-25
  */
 @Controller
 @RequestMapping(value = "student")
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
+
+    private final GradeService gradeService;
+
+    private final SubjectService subjectService;
+
+    private final ScoreService scoreService;
 
     @Autowired
-    private GradeService gradeService;
-
-    @Autowired
-    private SubjectService subjectService;
+    public StudentController(StudentService studentService, GradeService gradeService, SubjectService subjectService, ScoreService scoreService) {
+        this.studentService = studentService;
+        this.gradeService = gradeService;
+        this.subjectService = subjectService;
+        this.scoreService = scoreService;
+    }
 
     /**
      * 学生信息列表
@@ -113,6 +125,16 @@ public class StudentController {
     public ModelAndView toNewSubject(StudentVo studentVo){
         ModelAndView modelAndView = new ModelAndView("student/chooseSubject");
         List<SubjectVo> subjectVoList = subjectService.findSubjectList();
+        List<ScoreVo> scoreVoList = scoreService.findScoreList(studentVo.getId());
+        for (ScoreVo scoreVo : scoreVoList){
+            for (SubjectVo subjectVo : subjectVoList){
+                if (scoreVo.getSubjectId().equals(subjectVo.getId())){
+                    subjectVo.setScore(scoreVo.getScore());
+                    subjectService.saveSubject(subjectVo);
+                }
+            }
+        }
+        modelAndView.addObject("scoreVoList", scoreVoList);
         modelAndView.addObject("subjectVoList",subjectVoList);
         modelAndView.addObject("studentVo",studentVo);
         return modelAndView;
@@ -123,6 +145,37 @@ public class StudentController {
      */
     @RequestMapping(value = "chooseSubject")
     public String newSubject(StdSubVo stdSubVo){
+        List<ScoreVo> scoreVoList = stdSubVo.getScoreVoList();
+        for (ScoreVo scoreVo:scoreVoList){
+            if (scoreVo.getScore() != null){
+                Long subjectId = scoreVo.getSubjectId();
+                SubjectVo subjectVo = subjectService.getSubject(subjectId);
+                BigDecimal stock = subjectVo.getStock();
+                scoreVo.setStock(stock);
+                BigDecimal oldScore = scoreVo.getOldScore();
+                if (oldScore == null){
+                    oldScore = BigDecimal.ZERO;
+                }
+                BigDecimal newScore = scoreVo.getScore();
+                BigDecimal differ = newScore.subtract(oldScore);
+                if (scoreVo.getStock() != null){
+                    int val = differ.compareTo(scoreVo.getStock());
+                    if (val <= 0){
+                        BigDecimal finalStock = scoreVo.getStock().subtract(differ);
+                        scoreVo.setStock(finalStock);
+                    }else {
+                        throw new BusinessException("订货量不能大于库存");
+                    }
+                }
+            }
+            List<SubjectVo> subjectVoList = subjectService.findSubjectList();
+            for (SubjectVo subjectVo : subjectVoList){
+                if (subjectVo.getId().equals(scoreVo.getSubjectId())){
+                    subjectVo.setStock(scoreVo.getStock());
+                }
+                subjectService.saveSubject(subjectVo);
+            }
+        }
         if (stdSubVo.getScoreVoList() != null){
             studentService.saveStudent(stdSubVo);
         }

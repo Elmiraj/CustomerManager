@@ -1,8 +1,10 @@
 package com.biz.std.vo.subject;
 
 import com.biz.std.model.Subject;
+import com.biz.std.vo.score.ScoreVo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 学科类
@@ -27,6 +29,11 @@ public class SubjectVo {
      * 选修该课程的人数
      */
     private Integer count;
+
+    /**
+     * 订货数
+     */
+    private BigDecimal score;
 
     /**
      * 平均分
@@ -62,6 +69,11 @@ public class SubjectVo {
         this.id = subject.getId();
         this.name = subject.getName();
     }
+
+    /**
+     * 客户信息列表
+     */
+    private List<ScoreVo> scoreVoList;
 
     public void setCount(Integer count) {
         this.count = count;
@@ -129,5 +141,21 @@ public class SubjectVo {
 
     public void setStock(BigDecimal stock) {
         this.stock = stock;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
+    }
+
+    public List<ScoreVo> getScoreVoList() {
+        return scoreVoList;
+    }
+
+    public void setScoreVoList(List<ScoreVo> scoreVoList) {
+        this.scoreVoList = scoreVoList;
     }
 }

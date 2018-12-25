@@ -189,7 +189,7 @@
         </div>
 
 
-    </div><!-- /.navbar-container -->
+    </div>
 </div>
 
 <div class="main-container ace-save-state" id="main-container">
@@ -574,21 +574,13 @@
                                                     <td colspan="13">
                                                         <div class="table-detail">
                                                             <div class="row">
-                                                                <%--<div class="col-xs-12 col-sm-2">--%>
-                                                                    <%--<div class="text-center">--%>
-                                                                        <%--<img height="150"--%>
-                                                                             <%--class="thumbnail inline no-margin-bottom"--%>
-                                                                             <%--alt="${studentListVo.studentVoList.get(index).name}s Avatar"--%>
-                                                                             <%--src="${studentListVo.studentVoList.get(index).picture}">--%>
-                                                                    <%--</div>--%>
-                                                                <%--</div>--%>
 
                                                                 <div class="col-xs-12 col-sm-10">
                                                                     <div class="space visible-xs"></div>
 
                                                                     <div class="profile-user-info profile-user-info-striped">
                                                                         <div class="profile-info-row">
-                                                                            <div class="profile-info-name" style="background-color: #a5dce4"> 姓名</div>
+                                                                            <div class="profile-info-name"> 姓名</div>
 
                                                                             <div class="profile-info-value">
                                                                             <span>
@@ -601,7 +593,7 @@
                                                                                    items="${studentListVo.studentVoList.get(index).scoreVoList}">
 
                                                                             <div class="profile-info-row">
-                                                                                <div class="profile-info-name" style="background-color: #2ECEE7">
+                                                                                <div class="profile-info-name" style="background-color: #bce2e8;">
                                                                                     <c:out value="${scoreVo.subjectName}"/>
                                                                                 </div>
 

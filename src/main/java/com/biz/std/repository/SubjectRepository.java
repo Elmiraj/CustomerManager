@@ -22,6 +22,4 @@ public interface SubjectRepository extends JpaRepository<Subject,Long>,JpaSpecif
 
     List<Subject> findAllByOrderByName();
 
-    Page<Subject> findAllByOrderByName(@Nullable Specification<Subject> var1, Pageable var2);
-    // Page<Subject> findAllByOrderByName(Specification<Subject> subjectSpecification, PageRequest pageRequest);
 }

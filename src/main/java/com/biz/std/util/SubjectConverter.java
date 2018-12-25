@@ -32,9 +32,10 @@ public class SubjectConverter {
         subjectVo.setCount(subject.getScores().size());
         subjectVo.setAvgScore(Utils.avgScore(subject.getScores()));
         subjectVo.setTotalScore(Utils.totalScore(subject.getScores()));
+        subjectVo.setScoreVoList(ScoreConverter.toVoList(subject.getScores()));
         return subjectVo;
-
     }
+
     /**
      * 学科vo转po
      */

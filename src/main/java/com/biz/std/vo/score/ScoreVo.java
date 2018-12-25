@@ -33,6 +33,11 @@ public class ScoreVo {
     private String subjectName;
 
     /**
+     * 旧数量
+     */
+    private BigDecimal oldScore;
+
+    /**
      * 数量
      */
     private BigDecimal score;
@@ -161,5 +166,13 @@ public class ScoreVo {
 
     public void setStock(BigDecimal stock) {
         this.stock = stock;
+    }
+
+    public BigDecimal getOldScore() {
+        return oldScore;
+    }
+
+    public void setOldScore(BigDecimal oldScore) {
+        this.oldScore = oldScore;
     }
 }
