@@ -438,26 +438,26 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right"> 性别 </label>
+                            <%--<div class="form-group">--%>
+                                <%--<label class="col-sm-3 control-label no-padding-right"> 性别 </label>--%>
 
-                                <div class="col-sm-9">
-                                    <label>
-                                        <input name="sex" type="radio" class="ace" value="0"
-                                                <c:if test="${studentOperateVo.studentVo.sex == 0}">
-                                                    checked="checked"
-                                                </c:if>/>
-                                        <span class="lbl"> 男 </span>
-                                    </label>
-                                    <label>
-                                        <input name="sex" type="radio" class="ace" value="1"
-                                            <c:if test="${studentOperateVo.studentVo.sex == 1}">
-                                                checked="checked"
-                                            </c:if> />
-                                        <span class="lbl"> 女</span>
-                                    </label>
-                                </div>
-                            </div>
+                                <%--<div class="col-sm-9">--%>
+                                    <%--<label>--%>
+                                        <%--<input name="sex" type="radio" class="ace" value="0"--%>
+                                                <%--<c:if test="${studentOperateVo.studentVo.sex == 0}">--%>
+                                                    <%--checked="checked"--%>
+                                                <%--</c:if>/>--%>
+                                        <%--<span class="lbl"> 男 </span>--%>
+                                    <%--</label>--%>
+                                    <%--<label>--%>
+                                        <%--<input name="sex" type="radio" class="ace" value="1"--%>
+                                            <%--<c:if test="${studentOperateVo.studentVo.sex == 1}">--%>
+                                                <%--checked="checked"--%>
+                                            <%--</c:if> />--%>
+                                        <%--<span class="lbl"> 女</span>--%>
+                                    <%--</label>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right"> 是否付款 </label>
@@ -468,14 +468,21 @@
                                                 <c:if test="${studentOperateVo.studentVo.isPaid == 0}">
                                                     checked="checked"
                                                 </c:if>/>
-                                        <span class="lbl"> 是 </span>
+                                        <span class="lbl"> 完全付款 </span>
                                     </label>
                                     <label>
                                         <input name="isPaid" type="radio" class="ace" value="1"
                                                 <c:if test="${studentOperateVo.studentVo.isPaid == 1}">
                                                     checked="checked"
                                                 </c:if> />
-                                        <span class="lbl"> 否 </span>
+                                        <span class="lbl"> 部分付款 </span>
+                                    </label>
+                                    <label>
+                                        <input name="isPaid" type="radio" class="ace" value="2"
+                                                <c:if test="${studentOperateVo.studentVo.isPaid == 2}">
+                                                    checked="checked"
+                                                </c:if> />
+                                        <span class="lbl"> 没有付款 </span>
                                     </label>
                                 </div>
                             </div>
@@ -513,6 +520,19 @@
 
                             </div>
 
+                            <input type="hidden" name="totalTotalPrice"
+                                   value="${studentOperateVo.studentVo.totalTotalPrice}"/>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="paidMoney">付款金额</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" id="paidMoney" name="paidMoney" required="required" class="col-xs-10 col-sm-5"
+                                           maxlength="20"
+                                           value="${studentOperateVo.studentVo.totalTotalPrice}"/>
+                                </div>
+                            </div>
+
                             <div class="clearfix form-actions">
                                 <div class="col-md-offset-3 col-md-9">
                                     <button class="btn btn-info" type="submit">
@@ -540,24 +560,24 @@
         <div class="footer-inner">
             <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application © 2013-2014
+							<span class="blue bolder">JZ</span>
+							Application © 2018-2019
 						</span>
 
-                &nbsp; &nbsp;
-                <span class="action-buttons">
-							<a href="http://ace.jeka.by/form-elements.html#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
+                <%--&nbsp; &nbsp;--%>
+                <%--<span class="action-buttons">--%>
+							<%--<a href="http://ace.jeka.by/form-elements.html#">--%>
+								<%--<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>--%>
+							<%--</a>--%>
 
-							<a href="http://ace.jeka.by/form-elements.html#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
+							<%--<a href="http://ace.jeka.by/form-elements.html#">--%>
+								<%--<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>--%>
+							<%--</a>--%>
 
-							<a href="http://ace.jeka.by/form-elements.html#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
+							<%--<a href="http://ace.jeka.by/form-elements.html#">--%>
+								<%--<i class="ace-icon fa fa-rss-square orange bigger-150"></i>--%>
+							<%--</a>--%>
+						<%--</span>--%>
             </div>
         </div>
     </div>

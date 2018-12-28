@@ -438,7 +438,7 @@
                                                 <%--<th>客户编号</th>--%>
                                                 <th>详情</th>
                                                 <th>姓名</th>
-                                                <th>性别</th>
+                                                <%--<th>性别</th>--%>
                                                 <%--<th>出生日期</th>--%>
                                                 <%--<th>所在地址</th>--%>
                                                 <th>订货品类数</th>
@@ -478,9 +478,9 @@
                                                         <c:out value="${studentListVo.studentVoList.get(index).name}"/>
                                                     </td>
 
-                                                    <td>
-                                                        <c:out value="${0 == studentListVo.studentVoList.get(index).sex ? '男' : '女'}"/>
-                                                    </td>
+                                                    <%--<td>--%>
+                                                        <%--<c:out value="${0 == studentListVo.studentVoList.get(index).sex ? '男' : '女'}"/>--%>
+                                                    <%--</td>--%>
 
                                                     <%--<td>--%>
                                                         <%--<c:out value="${studentListVo.studentVoList.get(index).birthday}"/>--%>
@@ -513,7 +513,7 @@
                                                     <%--</td>--%>
 
                                                     <td>
-                                                        <c:out value="${0 == studentListVo.studentVoList.get(index).isPaid ? '是' : '否'}"/>
+                                                        <c:out value="${0 == studentListVo.studentVoList.get(index).isPaid ? '完全付款' : (1 == studentListVo.studentVoList.get(index).isPaid ? '部分付款':'没有付款')}"/>
                                                     </td>
 
                                                     <td>
@@ -594,7 +594,7 @@
 
                                                                             <div class="profile-info-row">
                                                                                 <div class="profile-info-name" style="background-color: #bce2e8;">
-                                                                                    <c:out value="${scoreVo.subjectName}"/>
+                                                                                    <c:out value="${scoreVo.subjectName}数量"/>
                                                                                 </div>
 
                                                                                 <div class="profile-info-value">
@@ -625,15 +625,25 @@
                                                                             </div>
 
                                                                         </c:forEach>
-                                                                        <%--<div class="profile-info-row">--%>
-                                                                            <%--<div class="profile-info-name"> 货物总价</div>--%>
+                                                                        <div class="profile-info-row">
+                                                                            <div class="profile-info-name"> 货物总价</div>
 
-                                                                            <%--<div class="profile-info-value">--%>
-                                                                            <%--<span>--%>
-                                                                                <%--<c:out value="${studentListVo.studentVoList.get(index).scoreVoList.totalTotalPrice}"/>--%>
-                                                                            <%--</span>--%>
-                                                                            <%--</div>--%>
-                                                                        <%--</div>--%>
+                                                                            <div class="profile-info-value">
+                                                                            <span>
+                                                                                <c:out value="${studentListVo.studentVoList.get(index).totalTotalPrice}"/>
+                                                                            </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="profile-info-row">
+                                                                            <div class="profile-info-name"> 实际支付</div>
+
+                                                                            <div class="profile-info-value">
+                                                                            <span>
+                                                                                <c:out value="${studentListVo.studentVoList.get(index).paidMoney}"/>
+                                                                            </span>
+                                                                            </div>
+                                                                        </div>
 
                                                                     </div>
 
@@ -754,24 +764,24 @@
         <div class="footer-inner">
             <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application © 2013-2014
+							<span class="blue bolder">JZ</span>
+							Application © 2018-2019
 						</span>
 
-                &nbsp; &nbsp;
-                <span class="action-buttons">
-							<a href="http://ace.jeka.by/tables.html#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
+                <%--&nbsp; &nbsp;--%>
+                <%--<span class="action-buttons">--%>
+							<%--<a href="http://ace.jeka.by/tables.html#">--%>
+								<%--<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>--%>
+							<%--</a>--%>
 
-							<a href="http://ace.jeka.by/tables.html#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
+							<%--<a href="http://ace.jeka.by/tables.html#">--%>
+								<%--<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>--%>
+							<%--</a>--%>
 
-							<a href="http://ace.jeka.by/tables.html#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
+							<%--<a href="http://ace.jeka.by/tables.html#">--%>
+								<%--<i class="ace-icon fa fa-rss-square orange bigger-150"></i>--%>
+							<%--</a>--%>
+						<%--</span>--%>
             </div>
         </div>
     </div>

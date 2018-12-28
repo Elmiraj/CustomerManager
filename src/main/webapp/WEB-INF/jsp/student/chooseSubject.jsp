@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>客户选课</title>
+    <title>客户订货</title>
 
     <meta name="description" content="Common form elements and layouts">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -408,7 +408,7 @@
                                                         <th>序号</th>
                                                         <th>货物名</th>
                                                         <th>单价</th>
-                                                        <th>库存</th>
+                                                        <th>剩余库存</th>
                                                         <th>订货数量</th>
                                                         <th>选货人数</th>
                                                     </tr>
@@ -504,23 +504,8 @@
         <div class="footer-inner">
             <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application © 2013-2014
-						</span>
-
-                &nbsp; &nbsp;
-                <span class="action-buttons">
-							<a href="http://ace.jeka.by/form-elements.html#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
-
-							<a href="http://ace.jeka.by/form-elements.html#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
-
-							<a href="http://ace.jeka.by/form-elements.html#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
+							<span class="blue bolder">JZ</span>
+							Application © 2018-2019
 						</span>
             </div>
         </div>

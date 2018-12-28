@@ -7,8 +7,9 @@ import java.sql.Date;
 import java.util.List;
 
 /**
- * 学生信息类
- * Created by haojia.wang on 2017/5/25.
+ * StudentVo class
+ * @author junzhang
+ * @date 2018-12-26
  */
 public class StudentVo {
 
@@ -61,6 +62,16 @@ public class StudentVo {
      * 是否付款
      */
     private Integer isPaid;
+
+    /**
+     * 应付金额
+     */
+    private BigDecimal totalTotalPrice;
+
+    /**
+     * 实付金额
+     */
+    private BigDecimal paidMoney;
 
     public Integer getIsPaid() {
         return isPaid;
@@ -166,5 +177,21 @@ public class StudentVo {
 
     public void setTotalScore(BigDecimal totalScore) {
         this.totalScore = totalScore;
+    }
+
+    public BigDecimal getTotalTotalPrice() {
+        return totalTotalPrice;
+    }
+
+    public void setTotalTotalPrice(BigDecimal totalTotalPrice) {
+        this.totalTotalPrice = totalTotalPrice;
+    }
+
+    public BigDecimal getPaidMoney() {
+        return paidMoney;
+    }
+
+    public void setPaidMoney(BigDecimal paidMoney) {
+        this.paidMoney = paidMoney;
     }
 }

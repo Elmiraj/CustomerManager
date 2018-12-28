@@ -20,26 +20,28 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 学生信息操作的实现类
- * Created by haojia.wang on 2017/5/25.
+ * StudentServiceImpl class
+ * @author junzhang
+ * @date 2018-12-26
  */
 @Service
 public class StudentServiceImpl implements StudentService{
 
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+
+    private final ScoreService scoreService;
 
     @Autowired
-    private ScoreService scoreService;
+    public StudentServiceImpl(StudentRepository studentRepository, ScoreService scoreService) {
+        this.studentRepository = studentRepository;
+        this.scoreService = scoreService;
+    }
 
     @Override
     public StudentListVo findStudentList(PageReqVo reqVo) {
@@ -49,6 +51,7 @@ public class StudentServiceImpl implements StudentService{
             return cb.and(predicates.toArray(new Predicate[predicates.size()]));
         },PageRequest.of(reqVo.getPageIndex()-1,reqVo.getPageSize()));
         PageVo pageVo = Utils.getPageVo(reqVo,students);
+
         List<Student> studentList = studentRepository.findAllByOrderByName();
         List<StudentVo> studentVoList = StudentConverter.toVoList(studentList);
         return new StudentListVo(pageVo,studentVoList);
@@ -66,15 +69,17 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public void saveStudent(StudentVo studentVo) {
         Student student = StudentConverter.toPo(studentVo);
-        studentRepository.save(student);
+        studentRepository.saveAndFlush(student);
     }
 
 
     @Override
     public void saveStudent(StdSubVo stdSubVo) {
         Student student = studentRepository.findStudentById(stdSubVo.getStudentVo().getId());
+        student.setTotalTotalPrice(stdSubVo.getStudentVo().getTotalTotalPrice());
         List<ScoreVo> scoreList = stdSubVo.getScoreVoList();
         List<Score> checkedScoreList = new ArrayList<>();
+
         if (scoreList != null){
             for (ScoreVo scoreVo:scoreList) {
                 if (scoreVo.getScore() == null){

@@ -2,8 +2,10 @@ package com.biz.std.util;
 
 import com.biz.std.model.Grade;
 import com.biz.std.model.Student;
+import com.biz.std.vo.score.ScoreVo;
 import com.biz.std.vo.student.StudentVo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +29,13 @@ public class StudentConverter {
         Student student = new Student();
         student.setId(studentVo.getId());
         student.setName(studentVo.getName());
-        student.setSex(studentVo.getSex());
         student.setIsPaid(studentVo.getIsPaid());
         Grade grade = new Grade();
         grade.setId(studentVo.getGradeId());
         student.setGrade(grade);
-        student.setPicture(studentVo.getPicture());
         student.setScores(ScoreConverter.toPoList(studentVo.getScoreVoList()));
+        student.setPaidMoney(studentVo.getPaidMoney());
+        student.setTotalTotalPrice(studentVo.getTotalTotalPrice());
         return student;
     }
 
@@ -44,15 +46,27 @@ public class StudentConverter {
         StudentVo studentVo = new StudentVo();
         studentVo.setId(student.getId());
         studentVo.setName(student.getName());
-        studentVo.setSex(student.getSex());
         studentVo.setIsPaid(student.getIsPaid());
         studentVo.setGradeId(student.getGrade().getId());
         studentVo.setGradeName(student.getGrade().getName());
-        studentVo.setPicture(student.getPicture());
         studentVo.setSubjectCount(student.getScores().size());
         studentVo.setScoreVoList(ScoreConverter.toVoList(student.getScores()));
-        studentVo.setAvgScore(Utils.avgScore(student.getScores()));
+        for (ScoreVo scoreVo : studentVo.getScoreVoList()){
+            BigDecimal totalTotalPrice = scoreVo.getTotalPrice();
+            if (totalTotalPrice == null){
+                studentVo.setTotalTotalPrice(scoreVo.getScore().multiply(scoreVo.getPrice()).setScale(
+                        2,BigDecimal.ROUND_HALF_UP));
+            }else {
+                studentVo.setTotalTotalPrice(scoreVo.getScore().multiply(scoreVo.getPrice()).add(totalTotalPrice).setScale(
+                        2,BigDecimal.ROUND_HALF_UP));
+            }
+        }
         studentVo.setTotalScore(Utils.totalScore(student.getScores()));
+        studentVo.setTotalTotalPrice(student.getTotalTotalPrice());
+        if (student.getPaidMoney() == null){
+            student.setPaidMoney(BigDecimal.ZERO);
+        }
+        studentVo.setPaidMoney(student.getPaidMoney());
         return studentVo;
     }
 

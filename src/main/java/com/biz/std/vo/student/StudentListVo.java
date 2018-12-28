@@ -5,9 +5,11 @@ import com.biz.std.vo.PageVo;
 import java.util.List;
 
 /**
- * 学生页面信息VO
- * Created by haojia.wang on 2017/5/25.
+ * StudentListVo class
+ * @author junzhang
+ * @date 2018-12-26
  */
+
 public class StudentListVo {
 
     /**
@@ -20,7 +22,7 @@ public class StudentListVo {
      */
     private List<StudentVo> studentVoList;
 
-    public StudentListVo(){
+    private StudentListVo(){
         super();
     }
 

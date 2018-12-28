@@ -1,0 +1,1 @@
+alter table student modify sex int null;

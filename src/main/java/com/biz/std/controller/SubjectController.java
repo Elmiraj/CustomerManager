@@ -68,7 +68,7 @@ public class SubjectController {
         }else{
             ModelAndView modelAndView = new ModelAndView("subject/new");
             SubjectOperateVo subjectOperateVo = new SubjectOperateVo();
-            subjectOperateVo.setError("学科名已经存在!");
+            subjectOperateVo.setError("货物名已经存在!");
             subjectOperateVo.setSubjectVo(subjectVo);
             modelAndView.addObject("subjectOperateVo",subjectOperateVo);
             return modelAndView;

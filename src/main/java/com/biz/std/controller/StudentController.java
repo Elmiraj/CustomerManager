@@ -146,10 +146,12 @@ public class StudentController {
     @RequestMapping(value = "chooseSubject")
     public String newSubject(StdSubVo stdSubVo){
         List<ScoreVo> scoreVoList = stdSubVo.getScoreVoList();
+        // 库存判断
         for (ScoreVo scoreVo:scoreVoList){
             if (scoreVo.getScore() != null){
                 Long subjectId = scoreVo.getSubjectId();
                 SubjectVo subjectVo = subjectService.getSubject(subjectId);
+
                 BigDecimal stock = subjectVo.getStock();
                 scoreVo.setStock(stock);
                 BigDecimal oldScore = scoreVo.getOldScore();
@@ -166,16 +168,27 @@ public class StudentController {
                     }else {
                         throw new BusinessException("订货量不能大于库存");
                     }
+                    // 保存库存到货物列表
+                    List<SubjectVo> subjectVoList = subjectService.findSubjectList();
+                    for (SubjectVo subjectVo1 : subjectVoList){
+                        if (subjectVo1.getId().equals(scoreVo.getSubjectId())){
+                            subjectVo1.setStock(scoreVo.getStock());
+                        }
+                        subjectService.saveSubject(subjectVo1);
+                    }
                 }
-            }
-            List<SubjectVo> subjectVoList = subjectService.findSubjectList();
-            for (SubjectVo subjectVo : subjectVoList){
-                if (subjectVo.getId().equals(scoreVo.getSubjectId())){
-                    subjectVo.setStock(scoreVo.getStock());
+                BigDecimal price = subjectVo.getPrice();
+                BigDecimal totalTotalPrice = stdSubVo.getStudentVo().getTotalTotalPrice();
+                if (totalTotalPrice == null){
+                    stdSubVo.getStudentVo().setTotalTotalPrice(price.multiply(newScore).setScale(
+                            2,BigDecimal.ROUND_HALF_UP));
+                }else {
+                    stdSubVo.getStudentVo().setTotalTotalPrice(price.multiply(newScore).add(totalTotalPrice).setScale(
+                            2,BigDecimal.ROUND_HALF_UP));
                 }
-                subjectService.saveSubject(subjectVo);
             }
         }
+        // 保存客户订单
         if (stdSubVo.getScoreVoList() != null){
             studentService.saveStudent(stdSubVo);
         }

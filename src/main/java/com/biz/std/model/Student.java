@@ -2,6 +2,7 @@ package com.biz.std.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class Student extends BaseEntity implements Serializable{
     /**
      * 性别
      */
-    @Column(length = 1,nullable = false)
+    @Column(length = 1)
     private Integer sex;
 
     /**
@@ -64,6 +65,13 @@ public class Student extends BaseEntity implements Serializable{
     private List<Score> scores = new ArrayList<>();
 
     private Integer isPaid;
+
+    /**
+     * 应付金额
+     */
+    private BigDecimal totalTotalPrice;
+
+    private BigDecimal paidMoney;
 
     public Integer getIsPaid() {
         return isPaid;
@@ -119,5 +127,21 @@ public class Student extends BaseEntity implements Serializable{
 
     public void setScores(List<Score> scores) {
         this.scores = scores;
+    }
+
+    public BigDecimal getTotalTotalPrice() {
+        return totalTotalPrice;
+    }
+
+    public void setTotalTotalPrice(BigDecimal totalTotalPrice) {
+        this.totalTotalPrice = totalTotalPrice;
+    }
+
+    public BigDecimal getPaidMoney() {
+        return paidMoney;
+    }
+
+    public void setPaidMoney(BigDecimal paidMoney) {
+        this.paidMoney = paidMoney;
     }
 }
