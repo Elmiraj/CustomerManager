@@ -6,13 +6,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * 服务器保存文件的工具类
+ * FileUpLoadUtil class
+ * @author junzhang
+ * @date 2018-12-29
  */
+
 public class FileUpLoadUtil {
 
     private FileUpLoadUtil(){}
@@ -52,7 +55,9 @@ public class FileUpLoadUtil {
         File file = new File(FILEDIR);
         if (!file.exists()) {
             boolean mkdir = file.mkdir();
-            if (!mkdir) throw new RuntimeException("创建文件出错了");
+            if (!mkdir){
+                throw new RuntimeException("创建文件出错了");
+            }
         }
     }
 
@@ -60,7 +65,7 @@ public class FileUpLoadUtil {
      * 初始化文件名
      */
     private static String initFileName(String name) {
-        Long num = new Date().getTime();
+        long num = System.currentTimeMillis();
         Double d = Math.random()*num;
         return (num + d.longValue() + "_" + name).replaceAll(" ", "-");
     }
@@ -73,7 +78,7 @@ public class FileUpLoadUtil {
      */
     public static void write(InputStream in, OutputStream out) throws IOException{
         byte[] buffer = new byte[1024];
-        int bytesRead = -1;
+        int bytesRead;
         while ((bytesRead = in.read(buffer)) != -1) {
             out.write(buffer, 0, bytesRead);
         }

@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
- * 班级实体数据库操作
- * Created by haojia.wang on 2017/5/26.
+ * GradeRepository class
+ * @author junzhang
+ * @date 2018-12-29
  */
+
 public interface GradeRepository extends JpaRepository<Grade,Long>,JpaSpecificationExecutor<Grade> {
 
     /**

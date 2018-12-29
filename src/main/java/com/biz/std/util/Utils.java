@@ -62,20 +62,4 @@ public class Utils {
         return totalScore;
     }
 
-    /**
-     * 计算总价
-     */
-    static BigDecimal totalTotalPrice(List<Subject> subjects,List<Score> scores){
-        BigDecimal totalPrice = new BigDecimal(new BigInteger("0"),2);
-        if (subjects.size() > 0){
-            BigDecimal sum = new BigDecimal("0");
-            for (Subject subject: subjects) {
-                for (Score score: scores){
-                    sum = sum.add(subject.getPrice().multiply(score.getScore()));
-                }
-            }
-            totalPrice = sum;
-        }
-        return totalPrice;
-    }
 }
