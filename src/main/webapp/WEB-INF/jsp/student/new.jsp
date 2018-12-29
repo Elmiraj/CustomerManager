@@ -480,14 +480,14 @@
                                                 <c:if test="${studentOperateVo.studentVo.isPaid == 1}">
                                                     checked="checked"
                                                 </c:if> />
-                                        <span class="lbl"> 部分付款 </span>
+                                        <span class="lbl"> 没有付款 </span>
                                     </label>
                                     <label>
                                         <input name="isPaid" type="radio" class="ace" value="2"
                                                 <c:if test="${studentOperateVo.studentVo.isPaid == 2}">
                                                     checked="checked"
                                                 </c:if> />
-                                        <span class="lbl"> 没有付款 </span>
+                                        <span class="lbl"> 部分付款 </span>
                                     </label>
                                 </div>
                             </div>

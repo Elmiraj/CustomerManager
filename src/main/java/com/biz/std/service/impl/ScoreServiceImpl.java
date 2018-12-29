@@ -46,4 +46,9 @@ public class ScoreServiceImpl implements ScoreService {
         List<Score> scoreList = scoreRepository.findAllByStudentId(id);
         return ScoreConverter.toVoList(scoreList);
     }
+
+    @Override
+    public void deleteScore(Long id) {
+        scoreRepository.deleteById(id);
+    }
 }

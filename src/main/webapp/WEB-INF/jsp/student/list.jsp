@@ -513,7 +513,7 @@
                                                     <%--</td>--%>
 
                                                     <td>
-                                                        <c:out value="${0 == studentListVo.studentVoList.get(index).isPaid ? '完全付款' : (1 == studentListVo.studentVoList.get(index).isPaid ? '部分付款':'没有付款')}"/>
+                                                        <c:out value="${0 == studentListVo.studentVoList.get(index).isPaid ? '完全付款' : (1 == studentListVo.studentVoList.get(index).isPaid ? '没有付款':'部分付款')}"/>
                                                     </td>
 
                                                     <td>
@@ -594,7 +594,7 @@
 
                                                                             <div class="profile-info-row">
                                                                                 <div class="profile-info-name" style="background-color: #bce2e8;">
-                                                                                    <c:out value="${scoreVo.subjectName}数量"/>
+                                                                                    <c:out value="${scoreVo.subjectName}"/>
                                                                                 </div>
 
                                                                                 <div class="profile-info-value">

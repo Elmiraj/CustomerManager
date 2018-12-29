@@ -6,14 +6,17 @@ import com.biz.std.vo.student.StudentListVo;
 import com.biz.std.vo.student.StudentVo;
 
 /**
- * 学生的操作服务类
- * Created by haojia.wang on 2017/5/25.
+ * StudentService class
+ * @author junzhang
+ * @date 2018-12-29
  */
+
 public interface StudentService {
 
     /**
      * 分页获取学生信息集合
      * @param reqVo 分页信息
+     * @return StudentListVo
      */
     StudentListVo findStudentList(PageReqVo reqVo);
 

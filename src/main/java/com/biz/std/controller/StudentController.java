@@ -178,6 +178,9 @@ public class StudentController {
                     }
                 }
                 BigDecimal price = subjectVo.getPrice();
+                if (price == null){
+                    price = BigDecimal.ONE;
+                }
                 BigDecimal totalTotalPrice = stdSubVo.getStudentVo().getTotalTotalPrice();
                 if (totalTotalPrice == null){
                     stdSubVo.getStudentVo().setTotalTotalPrice(price.multiply(newScore).setScale(

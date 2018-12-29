@@ -24,4 +24,10 @@ public interface ScoreService {
      * @return List<Score>
      */
     List<ScoreVo> findScoreList(Long id);
+
+    /**
+     * 删除多余的货物
+     * @param id Long
+     */
+    void deleteScore(Long id);
 }

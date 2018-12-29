@@ -54,6 +54,14 @@ public class StudentServiceImpl implements StudentService{
 
         List<Student> studentList = studentRepository.findAllByOrderByName();
         List<StudentVo> studentVoList = StudentConverter.toVoList(studentList);
+        for (StudentVo studentVo : studentVoList){
+            List<ScoreVo> scoreVoList = studentVo.getScoreVoList();
+            for (ScoreVo scoreVo : scoreVoList){
+                if (scoreVo.getScore().equals(BigDecimal.ZERO.setScale(2,BigDecimal.ROUND_HALF_UP))){
+                    scoreService.deleteScore(scoreVo.getId());
+                }
+            }
+        }
         return new StudentListVo(pageVo,studentVoList);
     }
 

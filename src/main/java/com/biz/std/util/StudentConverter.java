@@ -51,8 +51,12 @@ public class StudentConverter {
         studentVo.setGradeName(student.getGrade().getName());
         studentVo.setSubjectCount(student.getScores().size());
         studentVo.setScoreVoList(ScoreConverter.toVoList(student.getScores()));
+        // 总价
         for (ScoreVo scoreVo : studentVo.getScoreVoList()){
-            BigDecimal totalTotalPrice = scoreVo.getTotalPrice();
+            if (scoreVo.getStock() == null){
+                scoreVo.setStock(BigDecimal.ZERO);
+            }
+            BigDecimal totalTotalPrice = studentVo.getTotalTotalPrice();
             if (totalTotalPrice == null){
                 studentVo.setTotalTotalPrice(scoreVo.getScore().multiply(scoreVo.getPrice()).setScale(
                         2,BigDecimal.ROUND_HALF_UP));
@@ -61,8 +65,8 @@ public class StudentConverter {
                         2,BigDecimal.ROUND_HALF_UP));
             }
         }
+
         studentVo.setTotalScore(Utils.totalScore(student.getScores()));
-        studentVo.setTotalTotalPrice(student.getTotalTotalPrice());
         if (student.getPaidMoney() == null){
             student.setPaidMoney(BigDecimal.ZERO);
         }
