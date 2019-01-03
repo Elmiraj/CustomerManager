@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Predicate;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +104,9 @@ public class StudentServiceImpl implements StudentService{
                 if (existScoreVo != null) {
                     //如果该生选择该门课程信息已经存在，则引用该信息ID，覆盖数据，不会重新创建一条数据
                     score.setId(existScoreVo.getId());
+                    if (existScoreVo.getScore().equals(BigDecimal.ZERO)){
+                        scoreService.deleteScore(score.getId());
+                    }
                 }
                 score.setStudent(student);
                 checkedScoreList.add(score);

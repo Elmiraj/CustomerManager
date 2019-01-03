@@ -34,9 +34,13 @@ public class ScoreServiceImpl implements ScoreService {
         student.setId(studentId);
         Subject subject = new Subject();
         subject.setId(subjectId);
-        Score score = scoreRepository.getScoreByStudentAndSubject(student, subject);
-        if (score != null){
-            return ScoreConverter.toVo(score);
+        try {
+            Score score = scoreRepository.getScoreByStudentAndSubject(student, subject);
+            if (score != null){
+                return ScoreConverter.toVo(score);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return null;
     }
